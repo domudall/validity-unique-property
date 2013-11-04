@@ -31,12 +31,17 @@ var schema = schemata(
 
 ## API
 
-### var validate = createUniqueValidator(Function: findOne)
+### var validate = createUniqueValidator(Function: findOne, Object: options)
 
 Create a validate function. `findOne(obj, cb)` should be a query function that allows
 the validator access to whatever persistence mechanism you are using, in order to check
 for the uniqueness of the given property. `obj` is a query object and `cb` is a
 callback function `cb(err, foundObject)`.
+
+Options allows you to change the id property when checking to see if the entity found is
+the same as the current entity. This is important for making sure validation does not fail
+when updating the current entity, and can be used by passing through an options object, e.g.
+`{ idProperty: '_id' }`.
 
 ### validate(String:key, String:keyDisplayName, Object:object, Function:cb)
 
