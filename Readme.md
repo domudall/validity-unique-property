@@ -24,16 +24,16 @@ var validity = require('validity')
 var schema = schemata(
     { emailAddress:
       { type: String
-      , validators: { all: [ validity.email, createUniqueValidator(collection.findOne) ] }
+      , validators: { all: [ validity.email, createUniqueValidator(collection.find) ] }
       }
     })
 ```
 
 ## API
 
-### var validate = createUniqueValidator(Function: findOne)
+### var validate = createUniqueValidator(Function: find)
 
-Create a validate function. `findOne(obj, cb)` should be a query function that allows
+Create a validate function. `find(obj, cb)` should be a query function that allows
 the validator access to whatever persistence mechanism you are using, in order to check
 for the uniqueness of the given property. `obj` is a query object and `cb` is a
 callback function `cb(err, foundObject)`.
